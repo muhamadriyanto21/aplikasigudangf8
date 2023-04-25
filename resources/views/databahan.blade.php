@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Bahan</title>
+
+    {{-- toast --}}
+    
+    {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body>
@@ -19,11 +23,11 @@
       
       <a href="/tambahbahan" class="btn btn-success">Tambah +</a>
         <div class="row mt-3">
-          @if($message = Session::get('success'))
+          {{-- @if($message = Session::get('success'))
             <div class="alert alert-success" role="alert">
               {{ $message }}
             </div>
-          @endif
+          @endif --}}
             <div class="col-12">            
                 <table class="table">
                     <thead>
@@ -55,8 +59,8 @@
                         <td>{{ $row->stok }}</td>
                         <td>{{ $row->created_at->format('D M Y') }}</td>
                         <td>
-                          <a href="/tampilkandata/{{ $row->id }}" class="btn btn-warning">Edit</a>
-                          <a href="/delete/{{ $row->id }}" class="btn btn-danger">Hapus</a>
+                          <a href="/tampilkandata/{{ $row->id }}" class="btn btn-primary">Edit</a>
+                          <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama }}" data-masuk="{{ $row->masuk }}">Hapus</a>
                         </td>
                       </tr>
                       @endforeach
@@ -65,7 +69,54 @@
             </div>
         </div>
     </div>
-
+      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
+    {{-- sweet alert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    {{-- toast --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+{{-- script delete --}}
+    <script>
+      $('.delete').click(function() {
+        var bahanid = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+        var masuk = $(this).attr('data-masuk');
+
+        swal({
+        title: "Apakah Kamu Yakin?",
+        text: "Kamu akan menghapus data bahan dengan nama : " + nama + " Bahan Masuk : " + masuk +" ",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/delete/"+bahanid+""
+          swal("Data Berhasil Dihapus", {
+            icon: "success",
+          });
+        } else {
+          swal("Data Tidak Jadi Dihapus");
+        }
+      });
+      });
+     </script>
+     
+     <script>
+      @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}")
+      @endif
+      
+     </script>
   </body>
 </html>
