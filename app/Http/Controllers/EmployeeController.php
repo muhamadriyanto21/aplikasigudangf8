@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+// use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
+
 
 class EmployeeController extends Controller
 {
@@ -49,5 +52,19 @@ class EmployeeController extends Controller
         $data->delete();
         return redirect()->route('pegawai')->with('success', 'Data Berhasil Di Hapus');
     }
+
+    // export pdf
+    // public function exportpdf() {
+    //     $data = Employee::all();
+    //     view()->share('data', $data);
+    //     $pdf = PDF::loadview('databahan-pdf');
+    // }
+    public function exportpdf() {
+        $data = Employee::all();
+        view()->share('data', $data);
+        $pdf = PDF::loadview('databahan-pdf');
+        return $pdf->download('data.pdf');
+    }
+    
     
 }

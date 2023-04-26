@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Bahan</title>
+    {{-- font awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     {{-- toast --}}
     
@@ -12,22 +14,26 @@
   </head>
   <body>
     <div class="container">
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-12">
                 <h1 class="text-center">Data Bahan</h1>
             </div>
         </div>
     </div>
     
-    <div class="container">
+    <div class="container-fluid">
       
       <a href="/tambahbahan" class="btn btn-success">Tambah +</a>
-        <div class="row mt-3">
+      
+        <div class="row mt-1">
             <div class="row mt-2 mb-2">
               <div class="col-auto">
                 <form action="/pegawai" method="GET">
                   <input type="search" name="search" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" placeholder="Cari Bahan...">
                 </form>
+              </div>
+              <div class="col-auto ms-2">
+                <a href="/exportpdf" class="btn btn-danger">Export PDF  <i class="fa-solid fa-file-pdf"></i></a>
               </div>
             </div>
           {{-- @if($message = Session::get('success'))
@@ -53,10 +59,10 @@
                       @php
                         $no = 1;
                       @endphp
-                      @foreach ($data as $row)
+                      @foreach ($data as $index => $row)
                       
                       <tr>
-                        <th scope="row">{{ $no++ }}</th>
+                        <th scope="row">{{ $index + $data->firstItem() }}</th>
                         <td>{{ $row->nama }}</td>
                         <td>
                           <img src="fotobahan/{{ $row->foto }}" alt="" style="width: 70px">
@@ -66,8 +72,8 @@
                         <td>{{ $row->stok }}</td>
                         <td>{{ $row->created_at->format('D M Y') }}</td>
                         <td>
-                          <a href="/tampilkandata/{{ $row->id }}" class="btn btn-primary">Edit</a>
-                          <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama }}" data-masuk="{{ $row->masuk }}">Hapus</a>
+                          <a href="/tampilkandata/{{ $row->id }}" class="btn btn-primary">Edit  <i class="fa-solid fa-pen-to-square"></i></a>
+                          <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-nama="{{ $row->nama }}" data-masuk="{{ $row->masuk }}">Hapus  <i class="fa-solid fa-trash"></i></a>
                         </td>
                       </tr>
                       @endforeach
