@@ -75,12 +75,12 @@
         <div class="gudang">
             <h3>Kepala Gudang</h3>
             <br><br>
-            <h4>P.Ryan</h4>
+            <h4>P.Andi</h4>
         </div>
         <div class="gudang">
             <h3 style="margin-left: 200px;">Admin</h3>
             <br><br>
-            <h4 style="margin-left: 200px;">Icha</h4>
+            <h4 style="margin-left: 200px;">Bu Elok</h4>
         </div>
     </div>
 </div>

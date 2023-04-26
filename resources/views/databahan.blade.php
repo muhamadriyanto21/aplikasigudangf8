@@ -23,10 +23,13 @@
     
     <div class="container-fluid">
       
-      <a href="/tambahbahan" class="btn btn-success">Tambah +</a>
+
       
         <div class="row mt-1">
             <div class="row mt-2 mb-2">
+              <div class="col-auto ">
+                <a href="/tambahbahan" class="btn btn-success">Tambah Data+</a>
+              </div>
               <div class="col-auto">
                 <form action="/pegawai" method="GET">
                   <input type="search" name="search" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" placeholder="Cari Bahan...">
@@ -35,6 +38,7 @@
               <div class="col-auto ms-2">
                 <a href="/exportpdf" class="btn btn-danger">Export PDF  <i class="fa-solid fa-file-pdf"></i></a>
               </div>
+             
             </div>
           {{-- @if($message = Session::get('success'))
             <div class="alert alert-success" role="alert">
@@ -79,6 +83,7 @@
                       @endforeach
                     </tbody>
                   </table>
+                  {{ $data->links() }}
             </div>
         </div>
     </div>
