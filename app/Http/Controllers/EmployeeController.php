@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmployeeExport;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
 // use Barryvdh\DomPDF\Facade as PDF;
 use PDF;
 
@@ -54,16 +57,17 @@ class EmployeeController extends Controller
     }
 
     // export pdf
-    // public function exportpdf() {
-    //     $data = Employee::all();
-    //     view()->share('data', $data);
-    //     $pdf = PDF::loadview('databahan-pdf');
-    // }
+
     public function exportpdf() {
         $data = Employee::all();
         view()->share('data', $data);
         $pdf = PDF::loadview('databahan-pdf');
         return $pdf->download('data.pdf');
+    }
+
+    // export excel
+    public function exportexcel() {
+      Excel::download(new EmployeeExport, 'databahan.xlsx');
     }
     
     

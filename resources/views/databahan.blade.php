@@ -28,7 +28,7 @@
         <div class="row mt-1">
             <div class="row mt-2 mb-2">
               <div class="col-auto ">
-                <a href="/tambahbahan" class="btn btn-success">Tambah Data+</a>
+                <a href="/tambahbahan" class="btn btn-primary">Tambah Data+</a>
               </div>
               <div class="col-auto">
                 <form action="/pegawai" method="GET">
@@ -37,6 +37,9 @@
               </div>
               <div class="col-auto ms-2">
                 <a href="/exportpdf" class="btn btn-danger">Export PDF  <i class="fa-solid fa-file-pdf"></i></a>
+              </div>
+              <div class="col-auto">
+                <a href="/exportexcel" class="btn btn-success">Export Excel  <i class="fa-solid fa-file-excel"></i></a>
               </div>
              
             </div>
