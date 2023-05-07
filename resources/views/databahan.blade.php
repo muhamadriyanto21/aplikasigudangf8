@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     {{-- toast --}}
-    
+
     {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
@@ -20,13 +20,14 @@
             </div>
         </div>
     </div>
-    
-    <div class="container-fluid">
-      
 
-      
+    <div class="container-fluid">
+
+
+
         <div class="row mt-1">
             <div class="row mt-2 mb-2">
+
               <div class="col-auto ">
                 <a href="/tambahbahan" class="btn btn-primary">Tambah Data+</a>
               </div>
@@ -39,16 +40,48 @@
                 <a href="/exportpdf" class="btn btn-danger">Export PDF  <i class="fa-solid fa-file-pdf"></i></a>
               </div>
               <div class="col-auto">
-                <a href="/exportexcel" class="btn btn-success">Export Excel  <i class="fa-solid fa-file-excel"></i></a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  export excel
+                  <i class="fa-solid fa-file-pdf"></i></a>
+                </button>
               </div>
-             
+              <div class="col-auto">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Import Excel
+                </button>
+              </div>
+            </div>
+        </div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           {{-- @if($message = Session::get('success'))
             <div class="alert alert-success" role="alert">
               {{ $message }}
             </div>
           @endif --}}
-            <div class="col-12">            
+            <div class="col-12">
                 <table class="table">
                     <thead>
                       <tr class="table-dark">
@@ -67,7 +100,7 @@
                         $no = 1;
                       @endphp
                       @foreach ($data as $index => $row)
-                      
+
                       <tr>
                         <th scope="row">{{ $index + $data->firstItem() }}</th>
                         <td>{{ $row->nama }}</td>
@@ -90,13 +123,16 @@
             </div>
         </div>
     </div>
-      
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    {{-- bootstrap --}}
+
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
     {{-- sweet alert --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
+
     {{-- toast --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 
@@ -132,12 +168,12 @@
       });
       });
      </script>
-     
+
      <script>
       @if(Session::has('success'))
         toastr.success("{{ Session::get('success') }}")
       @endif
-      
+
      </script>
   </body>
 </html>
